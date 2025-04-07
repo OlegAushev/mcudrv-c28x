@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef EMBLIB_C28X
+#error "EMBLIB_C28X must be defined."
+#endif
 
 #include <emblib/core.hpp>
 #include <emblib/chrono.hpp>
