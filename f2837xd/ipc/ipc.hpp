@@ -1,8 +1,6 @@
 #pragma once
 
-#ifdef MCUDRV_C28X
-
-#include <mcudrv/c28x/f2837xd/system/system.hpp>
+#include <mcudrv-c28x/f2837xd/system/system.hpp>
 #include <emblib/core.hpp>
 #include "F2837xD_Ipc_drivers.h"
 
@@ -92,5 +90,3 @@ inline void registerIpcInterruptHandler(InterruptType ipc_interrupt, void (*hand
 } // namespace ipc
 } // namespace c28x
 } // namespace mcu
-
-#endif

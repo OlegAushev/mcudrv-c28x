@@ -1,7 +1,4 @@
-#ifdef MCUDRV_C28X
-
-
-#include <mcudrv/c28x/f2837xd/cap/cap.hpp>
+#include <mcudrv-c28x/f2837xd/cap/cap.hpp>
 
 
 namespace mcu {
@@ -101,6 +98,3 @@ void Module::register_interrupt_callback(void (*callback)(Module*, uint16_t)) {
 } // namespace c28x
 
 } // namespace mcu
-
-
-#endif

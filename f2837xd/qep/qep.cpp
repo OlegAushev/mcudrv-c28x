@@ -1,7 +1,4 @@
-#ifdef MCUDRV_C28X
-
-
-#include <mcudrv/c28x/f2837xd/qep/qep.hpp>
+#include <mcudrv-c28x/f2837xd/qep/qep.hpp>
 
 
 namespace mcu {
@@ -78,6 +75,3 @@ void Module::_init_pins(const QepaPinConfig& qepa_pin, emb::optional<QepbPinConf
 } // namespace c28x
 
 } // namespace mcu
-
-
-#endif

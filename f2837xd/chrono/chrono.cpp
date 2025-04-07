@@ -1,6 +1,4 @@
-#ifdef MCUDRV_C28X
-
-#include <mcudrv/c28x/f2837xd/chrono/chrono.hpp>
+#include <mcudrv-c28x/f2837xd/chrono/chrono.hpp>
 
 namespace mcu {
 namespace c28x {
@@ -58,5 +56,3 @@ void high_resolution_clock::init(emb::chrono::microseconds period) {
 } // namespace chrono
 } // namespace c28x
 } // namespace mcu
-
-#endif

@@ -1,7 +1,4 @@
-#ifdef MCUDRV_C28X
-
-
-#include <mcudrv/c28x/f2837xd/pwm/pwm.hpp>
+#include <mcudrv-c28x/f2837xd/pwm/pwm.hpp>
 
 
 namespace mcu {
@@ -41,6 +38,3 @@ const uint32_t impl::pwm_pie_trip_int_nums[12] = {
 } // namespace c28x
 
 } // namespace mcu
-
-
-#endif

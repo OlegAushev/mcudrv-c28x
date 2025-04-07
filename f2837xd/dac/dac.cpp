@@ -1,7 +1,5 @@
-#ifdef MCUDRV_C28X
-
-#include <mcudrv/c28x/f2837xd/dac/dac.hpp>
-#include <mcudrv/c28x/f2837xd/chrono/chrono.hpp>
+#include <mcudrv-c28x/f2837xd/dac/dac.hpp>
+#include <mcudrv-c28x/f2837xd/chrono/chrono.hpp>
 
 namespace mcu {
 namespace c28x {
@@ -23,5 +21,3 @@ Module::Module(Peripheral peripheral)
 } // namespace dac
 } // namespace c28x
 } // namespace mcu
-
-#endif

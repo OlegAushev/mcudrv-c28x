@@ -1,7 +1,4 @@
-#ifdef MCUDRV_C28X
-
-
-#include <mcudrv/c28x/f2837xd/spi/spi.hpp>
+#include <mcudrv-c28x/f2837xd/spi/spi.hpp>
 
 
 namespace mcu {
@@ -89,6 +86,3 @@ void Module::_init_pins(const MosiPinConfig& mosi_pin, const MisoPinConfig& miso
 } // namespace c28x
 
 } // namespace mcu
-
-
-#endif

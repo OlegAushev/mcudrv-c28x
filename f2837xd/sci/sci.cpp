@@ -1,6 +1,4 @@
-#ifdef MCUDRV_C28X
-
-#include <mcudrv/c28x/f2837xd/sci/sci.hpp>
+#include <mcudrv-c28x/f2837xd/sci/sci.hpp>
 
 
 namespace mcu {
@@ -90,6 +88,3 @@ void Module::_init_pins(const RxPinConfig& rx_pin, const TxPinConfig& tx_pin) {
 } // namespace c28x
 
 } // namespace mcu
-
-
-#endif

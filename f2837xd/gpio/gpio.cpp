@@ -1,6 +1,4 @@
-#ifdef MCUDRV_C28X
-
-#include <mcudrv/c28x/f2837xd/gpio/gpio.hpp>
+#include <mcudrv-c28x/f2837xd/gpio/gpio.hpp>
 
 namespace mcu {
 namespace c28x {
@@ -23,5 +21,3 @@ emb::array<emb::optional<uint32_t>, 16> DurationLogger::pins_;
 } // namespace gpio
 } // namespace c28x
 } // namespace mcu
-
-#endif

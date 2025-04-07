@@ -1,11 +1,11 @@
 #pragma once
 
-#ifdef MCUDRV_C28X
-
 #include <emblib/array.hpp>
 #include <emblib/core.hpp>
+#include <emblib/singleton.hpp>
+
 #include <mcu/adc_channels/adc_channels.hpp>
-#include <mcudrv/c28x/f2837xd/system/system.hpp>
+#include <mcudrv-c28x/f2837xd/system/system.hpp>
 
 namespace mcu {
 namespace c28x {
@@ -184,5 +184,3 @@ public:
 } // namespace adc
 } // namespace c28x
 } // namespace mcu
-
-#endif

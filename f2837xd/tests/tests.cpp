@@ -1,7 +1,4 @@
-#ifdef MCUDRV_C28X
-
-
-#include <mcudrv/c28x/f2837xd/tests/tests.hpp>
+#include <mcudrv-c28x/f2837xd/tests/tests.hpp>
 #include <emblib/scheduler.hpp>
 
 
@@ -258,6 +255,3 @@ void mcu::c28x::tests::crc_test() {
     EMB_ASSERT_EQUAL(crc4, 0x4EFF913E);
 #endif
 }
-
-
-#endif

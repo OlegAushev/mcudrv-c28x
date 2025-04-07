@@ -1,7 +1,5 @@
-#ifdef MCUDRV_C28X
-
-#include <mcudrv/c28x/f2837xd/adc/adc.hpp>
-#include <mcudrv/c28x/f2837xd/chrono/chrono.hpp>
+#include <mcudrv-c28x/f2837xd/adc/adc.hpp>
+#include <mcudrv-c28x/f2837xd/chrono/chrono.hpp>
 
 namespace mcu {
 namespace c28x {
@@ -101,5 +99,3 @@ void Module::transfer_control_to_cpu2(Peripheral peripheral) {
 } // namespace adc
 } // namespace c28x
 } // namespace mcu
-
-#endif

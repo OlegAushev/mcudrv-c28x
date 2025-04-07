@@ -1,10 +1,8 @@
 #pragma once
 
-#ifdef MCUDRV_C28X
+#include <mcudrv-c28x/f2837xd/system/system.hpp>
 
-#include <mcudrv/c28x/f2837xd/system/system.hpp>
-#include <mcudrv/generic/gpio.hpp>
-
+#include <emblib/mcudef.hpp>
 #include <emblib/array.hpp>
 #include <emblib/chrono.hpp>
 #include <emblib/optional.hpp>
@@ -341,5 +339,3 @@ public:
 } //namespace gpio
 } // namespace c28x
 } // namespace mcu
-
-#endif

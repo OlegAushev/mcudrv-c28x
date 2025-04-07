@@ -1,11 +1,9 @@
 #pragma once
 
 
-#ifdef MCUDRV_C28X
-
-
-#include <mcudrv/c28x/f2837xd/system/system.hpp>
-#include <mcudrv/c28x/f2837xd/gpio/gpio.hpp>
+#include <emblib/singleton.hpp>
+#include <mcudrv-c28x/f2837xd/system/system.hpp>
+#include <mcudrv-c28x/f2837xd/gpio/gpio.hpp>
 
 
 namespace mcu {
@@ -94,6 +92,3 @@ protected:
 } // namespace c28x
 
 } // namespace mcu
-
-
-#endif

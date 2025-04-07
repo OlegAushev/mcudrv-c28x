@@ -1,9 +1,8 @@
 #pragma once
 
-#ifdef MCUDRV_C28X
-
-#include <mcudrv/c28x/f2837xd/system/system.hpp>
+#include <mcudrv-c28x/f2837xd/system/system.hpp>
 #include <emblib/core.hpp>
+#include <emblib/singleton.hpp>
 
 namespace mcu {
 namespace c28x {
@@ -58,5 +57,3 @@ public:
 } // namespace dac
 } // namespace c28x
 } // namespace mcu
-
-#endif

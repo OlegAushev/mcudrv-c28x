@@ -1,7 +1,4 @@
-#ifdef MCUDRV_C28X
-
-
-#include <mcudrv/c28x/f2837xd/i2c/i2c.hpp>
+#include <mcudrv-c28x/f2837xd/i2c/i2c.hpp>
 
 
 namespace mcu {
@@ -65,6 +62,3 @@ void Module::_init_pins(const SdaPinConfig& sda_pin, const SclPinConfig& scl_pin
 } // namespace c28x
 
 } // namespace mcu
-
-
-#endif

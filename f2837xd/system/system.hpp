@@ -1,10 +1,6 @@
 #pragma once
 
 
-#ifdef MCUDRV_C28X
-
-
-#include <mcudrv/c28x/c28x_base.hpp>
 #include <emblib/core.hpp>
 #include <emblib/chrono.hpp>
 #include <driverlib.h>
@@ -67,6 +63,3 @@ inline uint32_t sysclk_freq() { return DEVICE_SYSCLK_FREQ; }
 
 } // namespace c28x
 } // namespace mcu
-
-
-#endif
