@@ -4,7 +4,6 @@
 #error "EMBLIB_C28X must be defined."
 #endif
 
-#include <emblib/core.hpp>
 #include <emblib/chrono.hpp>
 #include <driverlib.h>
 #include <device.h>

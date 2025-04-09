@@ -1,6 +1,6 @@
 #pragma once
 
-#include <emblib/core.hpp>
+#include <emblib/scopedenum.hpp>
 #include <emblib/singleton.hpp>
 #include <mcudrv-c28x/f2837xd/gpio/gpio.hpp>
 #include <mcudrv-c28x/f2837xd/system/system.hpp>

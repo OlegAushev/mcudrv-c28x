@@ -6,6 +6,7 @@
 #include <emblib/array.hpp>
 #include <emblib/chrono.hpp>
 #include <emblib/optional.hpp>
+#include <emblib/scopedenum.hpp>
 
 #include <assert.h>
 

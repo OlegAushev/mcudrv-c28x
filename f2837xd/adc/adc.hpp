@@ -1,7 +1,8 @@
 #pragma once
 
 #include <emblib/array.hpp>
-#include <emblib/core.hpp>
+#include <emblib/noncopyable.hpp>
+#include <emblib/scopedenum.hpp>
 #include <emblib/singleton.hpp>
 
 #include <mcu/adc_channels/adc_channels.hpp>
