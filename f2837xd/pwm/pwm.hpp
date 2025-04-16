@@ -517,7 +517,7 @@ public:
         for (size_t i = 0; i < Phases; ++i) {
             EPWM_setCounterCompareValue(_module.base[i],
                                         static_cast<EPWM_CounterCompareModule>(cmp_module.underlying_value()),
-                                        static_cast<uint16_t>(duty_cycle[i].get() * _period));
+                                        static_cast<uint16_t>(duty_cycle[i].numval() * _period));
         }
     }
 
@@ -525,7 +525,7 @@ public:
         for (size_t i = 0; i < Phases; ++i) {
             EPWM_setCounterCompareValue(_module.base[i],
                                         static_cast<EPWM_CounterCompareModule>(cmp_module.underlying_value()),
-                                        static_cast<uint16_t>(duty_cycle.get() * _period));
+                                        static_cast<uint16_t>(duty_cycle.numval() * _period));
         }
     }
 
