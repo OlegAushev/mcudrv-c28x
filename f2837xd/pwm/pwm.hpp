@@ -513,7 +513,8 @@ public:
         }
     }
 
-    void set_duty_cycle(const emb::array<emb::unsigned_perunit, Phases>& duty_cycle, CounterCompareModule cmp_module = CounterCompareModule::a) {
+    void set_duty_cycle(const emb::array<emb::unsigned_pu, Phases>& duty_cycle,
+                        CounterCompareModule cmp_module = CounterCompareModule::a) {
         for (size_t i = 0; i < Phases; ++i) {
             EPWM_setCounterCompareValue(_module.base[i],
                                         static_cast<EPWM_CounterCompareModule>(cmp_module.underlying_value()),
@@ -521,7 +522,8 @@ public:
         }
     }
 
-    void set_duty_cycle(emb::unsigned_perunit duty_cycle, CounterCompareModule cmp_module = CounterCompareModule::a) {
+    void set_duty_cycle(emb::unsigned_pu duty_cycle,
+                        CounterCompareModule cmp_module = CounterCompareModule::a) {
         for (size_t i = 0; i < Phases; ++i) {
             EPWM_setCounterCompareValue(_module.base[i],
                                         static_cast<EPWM_CounterCompareModule>(cmp_module.underlying_value()),
