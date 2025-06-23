@@ -48,7 +48,7 @@ extern const uint16_t pie_xint_groups[5];
 struct DigitalInputConfig {
     uint32_t pin;
     uint32_t mux;
-    mcu::gpio::active_state active_state;
+    emb::gpio::active_state active_state;
     Type type;
     QualMode qual_mode;
     uint32_t qual_period;
@@ -58,7 +58,7 @@ struct DigitalInputConfig {
 struct DigitalOutputConfig {
     uint32_t pin;
     uint32_t mux;
-    mcu::gpio::active_state active_state;
+    emb::gpio::active_state active_state;
     Type type;
     MasterCore master_core;
 };
@@ -70,7 +70,7 @@ protected:
     bool initialized_;
     uint32_t pin_;
     uint32_t mux_;
-    mcu::gpio::active_state active_state_;
+    emb::gpio::active_state active_state_;
     GpioPin() : initialized_(false) {}
 public:
     void set_master_core(MasterCore master_core) {
@@ -82,12 +82,12 @@ public:
     }
     uint32_t pin_no() const { return pin_; }
     uint32_t mux() const { return mux_; }
-    mcu::gpio::active_state active_state() const { return active_state_; }
+    emb::gpio::active_state active_state() const { return active_state_; }
 };
 
 } // namespace impl
 
-class DigitalInput : public mcu::gpio::digital_input, public impl::GpioPin {
+class DigitalInput : public emb::gpio::digital_input, public impl::GpioPin {
 private:
     GPIO_ExternalIntNum int_num_;
 public:
@@ -118,12 +118,12 @@ public:
         return GPIO_readPin(pin_);
     }
 
-    virtual mcu::gpio::pin_state read() const {
+    virtual emb::gpio::pin_state read() const {
         assert(initialized_);
         if (read_level() == active_state_.underlying_value()) {
-            return mcu::gpio::pin_state::active;
+            return emb::gpio::pin_state::active;
         }
-        return mcu::gpio::pin_state::inactive;
+        return emb::gpio::pin_state::inactive;
     }
 
 public:
@@ -148,18 +148,18 @@ public:
     }
 };
 
-class DigitalOutput : public mcu::gpio::digital_output, public impl::GpioPin {
+class DigitalOutput : public emb::gpio::digital_output, public impl::GpioPin {
 public:
     DigitalOutput() {}
     DigitalOutput(const DigitalOutputConfig& config,
-                  mcu::gpio::pin_state init_state =
-                      mcu::gpio::pin_state::inactive) {
+                  emb::gpio::pin_state init_state =
+                      emb::gpio::pin_state::inactive) {
         init(config, init_state);
     }
 
     void init(const DigitalOutputConfig& config,
-              mcu::gpio::pin_state init_state =
-                      mcu::gpio::pin_state::inactive) {
+              emb::gpio::pin_state init_state =
+                      emb::gpio::pin_state::inactive) {
         pin_ = config.pin;
         mux_ = config.mux;
         active_state_ = config.active_state;
@@ -184,17 +184,17 @@ public:
         GPIO_writePin(pin_, level);
     }
 
-    virtual mcu::gpio::pin_state read() const {
+    virtual emb::gpio::pin_state read() const {
         assert(initialized_);
         if (read_level() == active_state_.underlying_value()) {
-            return mcu::gpio::pin_state::active;
+            return emb::gpio::pin_state::active;
         }
-        return mcu::gpio::pin_state::inactive;
+        return emb::gpio::pin_state::inactive;
     }
 
-    virtual void set(mcu::gpio::pin_state s = mcu::gpio::pin_state::active) {
+    virtual void set(emb::gpio::pin_state s = emb::gpio::pin_state::active) {
         assert(initialized_);
-        if (s == mcu::gpio::pin_state::active) {
+        if (s == emb::gpio::pin_state::active) {
             set_level(active_state_.underlying_value());
         } else {
             set_level(1 - active_state_.underlying_value());
@@ -203,7 +203,7 @@ public:
 
     virtual void reset() {
         assert(initialized_);
-        set(mcu::gpio::pin_state::inactive);
+        set(emb::gpio::pin_state::inactive);
     }
 
     virtual void toggle() {
@@ -218,7 +218,7 @@ private:
     const int active_debounce_count_;
     const int inactive_debounce_count_;
     int count_;
-    mcu::gpio::pin_state state_;
+    emb::gpio::pin_state state_;
     bool state_changed_;
 public:
     InputDebouncer(const DigitalInput& pin,
@@ -228,17 +228,17 @@ public:
             : pin_(pin),
               active_debounce_count_(active_debounce.count() / acq_period.count()),
               inactive_debounce_count_(inactive_debounce.count() / acq_period.count()),
-              state_(mcu::gpio::pin_state::inactive),
+              state_(emb::gpio::pin_state::inactive),
               state_changed_(false) {
         count_ = active_debounce_count_;
     }
 
     void debounce() {
         state_changed_ = false;
-        mcu::gpio::pin_state raw_state = pin_.read();
+        emb::gpio::pin_state raw_state = pin_.read();
 
         if (raw_state == state_) {
-            if (state_ == mcu::gpio::pin_state::active) {
+            if (state_ == emb::gpio::pin_state::active) {
                 count_ = inactive_debounce_count_;
             } else {
                 count_ = active_debounce_count_;
@@ -247,7 +247,7 @@ public:
             if (--count_ == 0) {
                 state_ = raw_state;
                 state_changed_ = true;
-                if (state_ == mcu::gpio::pin_state::active) {
+                if (state_ == emb::gpio::pin_state::active) {
                     count_ = inactive_debounce_count_;
                 } else {
                     count_ = active_debounce_count_;
@@ -256,7 +256,7 @@ public:
         }
     }
 
-    mcu::gpio::pin_state state() const { return state_; };
+    emb::gpio::pin_state state() const { return state_; };
     bool state_changed() const { return state_changed_; };
 };
 
@@ -301,7 +301,7 @@ public:
         DigitalOutputConfig out_config = {
             config.pin,
             config.mux,
-            mcu::gpio::active_state::high,
+            emb::gpio::active_state::high,
             mcu::c28x::gpio::Type::std,
             config.core};
         DigitalOutput out(out_config);

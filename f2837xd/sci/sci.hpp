@@ -96,7 +96,7 @@ extern const uint16_t sci_pie_int_groups[4];
 
 class Module
         : public emb::singleton_array<Module, peripheral_count>,
-          public mcu::uart::module,
+          public emb::uart::module,
           private emb::noncopyable {
 private:
     const Peripheral _peripheral;

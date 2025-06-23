@@ -421,10 +421,10 @@ public:
                static_cast<uint32_t>(XBAR_INPUT3));
 
         switch (pin.active_state().native_value()) {
-        case mcu::gpio::active_state::low:
+        case emb::gpio::active_state::low:
             GPIO_setPadConfig(pin.pin_no(), GPIO_PIN_TYPE_PULLUP);
             break;
-        case mcu::gpio::active_state::high:
+        case emb::gpio::active_state::high:
             GPIO_setPadConfig(pin.pin_no(), GPIO_PIN_TYPE_INVERT);
             break;
         }
@@ -589,7 +589,7 @@ protected:
 public:
 #ifdef CPU1
     static void preset_pins(const emb::array<PinConfig, 2*Phases>& pins,
-                            mcu::gpio::active_state active_state) {
+                            emb::gpio::active_state active_state) {
         for (size_t i = 0; i < pins.size(); ++i) {
             mcu::c28x::gpio::DigitalOutputConfig cfg = {
                 pins[i].pin,
