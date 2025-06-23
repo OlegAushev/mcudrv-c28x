@@ -65,13 +65,13 @@ struct DigitalOutputConfig {
 
 namespace impl {
 
-class GpioPin {
+class Pin {
 protected:
     bool initialized_;
     uint32_t pin_;
     uint32_t mux_;
     emb::gpio::active_state active_state_;
-    GpioPin() : initialized_(false) {}
+    Pin() : initialized_(false) {}
 public:
     void set_master_core(MasterCore master_core) {
         assert(initialized_);
@@ -87,7 +87,7 @@ public:
 
 } // namespace impl
 
-class DigitalInput : public emb::gpio::digital_input, public impl::GpioPin {
+class DigitalInput : public emb::gpio::input, public impl::Pin {
 private:
     GPIO_ExternalIntNum int_num_;
 public:
@@ -118,12 +118,12 @@ public:
         return GPIO_readPin(pin_);
     }
 
-    virtual emb::gpio::pin_state read() const {
+    virtual emb::gpio::state read() const {
         assert(initialized_);
         if (read_level() == active_state_.underlying_value()) {
-            return emb::gpio::pin_state::active;
+            return emb::gpio::state::active;
         }
-        return emb::gpio::pin_state::inactive;
+        return emb::gpio::state::inactive;
     }
 
 public:
@@ -148,18 +148,16 @@ public:
     }
 };
 
-class DigitalOutput : public emb::gpio::digital_output, public impl::GpioPin {
+class DigitalOutput : public emb::gpio::output, public impl::Pin {
 public:
     DigitalOutput() {}
     DigitalOutput(const DigitalOutputConfig& config,
-                  emb::gpio::pin_state init_state =
-                      emb::gpio::pin_state::inactive) {
+                  emb::gpio::state init_state = emb::gpio::state::inactive) {
         init(config, init_state);
     }
 
     void init(const DigitalOutputConfig& config,
-              emb::gpio::pin_state init_state =
-                      emb::gpio::pin_state::inactive) {
+              emb::gpio::state init_state = emb::gpio::state::inactive) {
         pin_ = config.pin;
         mux_ = config.mux;
         active_state_ = config.active_state;
@@ -184,17 +182,17 @@ public:
         GPIO_writePin(pin_, level);
     }
 
-    virtual emb::gpio::pin_state read() const {
+    virtual emb::gpio::state read() const {
         assert(initialized_);
         if (read_level() == active_state_.underlying_value()) {
-            return emb::gpio::pin_state::active;
+            return emb::gpio::state::active;
         }
-        return emb::gpio::pin_state::inactive;
+        return emb::gpio::state::inactive;
     }
 
-    virtual void set(emb::gpio::pin_state s = emb::gpio::pin_state::active) {
+    virtual void set(emb::gpio::state s = emb::gpio::state::active) {
         assert(initialized_);
-        if (s == emb::gpio::pin_state::active) {
+        if (s == emb::gpio::state::active) {
             set_level(active_state_.underlying_value());
         } else {
             set_level(1 - active_state_.underlying_value());
@@ -203,7 +201,7 @@ public:
 
     virtual void reset() {
         assert(initialized_);
-        set(emb::gpio::pin_state::inactive);
+        set(emb::gpio::state::inactive);
     }
 
     virtual void toggle() {
@@ -218,7 +216,7 @@ private:
     const int active_debounce_count_;
     const int inactive_debounce_count_;
     int count_;
-    emb::gpio::pin_state state_;
+    emb::gpio::state state_;
     bool state_changed_;
 public:
     InputDebouncer(const DigitalInput& pin,
@@ -228,17 +226,17 @@ public:
             : pin_(pin),
               active_debounce_count_(active_debounce.count() / acq_period.count()),
               inactive_debounce_count_(inactive_debounce.count() / acq_period.count()),
-              state_(emb::gpio::pin_state::inactive),
+              state_(emb::gpio::state::inactive),
               state_changed_(false) {
         count_ = active_debounce_count_;
     }
 
     void debounce() {
         state_changed_ = false;
-        emb::gpio::pin_state raw_state = pin_.read();
+        emb::gpio::state raw_state = pin_.read();
 
         if (raw_state == state_) {
-            if (state_ == emb::gpio::pin_state::active) {
+            if (state_ == emb::gpio::state::active) {
                 count_ = inactive_debounce_count_;
             } else {
                 count_ = active_debounce_count_;
@@ -247,7 +245,7 @@ public:
             if (--count_ == 0) {
                 state_ = raw_state;
                 state_changed_ = true;
-                if (state_ == emb::gpio::pin_state::active) {
+                if (state_ == emb::gpio::state::active) {
                     count_ = inactive_debounce_count_;
                 } else {
                     count_ = active_debounce_count_;
@@ -256,7 +254,7 @@ public:
         }
     }
 
-    emb::gpio::pin_state state() const { return state_; };
+    emb::gpio::state state() const { return state_; };
     bool state_changed() const { return state_changed_; };
 };
 
