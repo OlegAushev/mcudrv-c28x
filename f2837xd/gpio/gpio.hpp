@@ -2,9 +2,9 @@
 
 #include <mcudrv-c28x/f2837xd/system/system.hpp>
 
-#include <emblib/mcudef.hpp>
 #include <emblib/array.hpp>
 #include <emblib/chrono.hpp>
+#include <emblib/gpio.hpp>
 #include <emblib/optional.hpp>
 #include <emblib/scopedenum.hpp>
 
