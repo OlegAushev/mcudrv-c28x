@@ -1,7 +1,7 @@
 #pragma once
 
 #include <mcudrv-c28x/f2837xd/system/system.hpp>
-#include <emblib/scopedenum.hpp>
+#include <emb/scopedenum.hpp>
 #include "F2837xD_Ipc_drivers.h"
 
 namespace mcu {

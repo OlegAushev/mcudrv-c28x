@@ -4,9 +4,9 @@
 #include <mcudrv-c28x/f2837xd/system/system.hpp>
 #include <mcudrv-c28x/f2837xd/gpio/gpio.hpp>
 
-#include <emblib/scopedenum.hpp>
-#include <emblib/singleton.hpp>
-#include <emblib/uart.hpp>
+#include <emb/scopedenum.hpp>
+#include <emb/singleton.hpp>
+#include <emb/uart.hpp>
 
 
 namespace mcu {

@@ -1,9 +1,9 @@
 #pragma once
 
 #include <mcudrv-c28x/f2837xd/system/system.hpp>
-#include <emblib/noncopyable.hpp>
-#include <emblib/scopedenum.hpp>
-#include <emblib/singleton.hpp>
+#include <emb/noncopyable.hpp>
+#include <emb/scopedenum.hpp>
+#include <emb/singleton.hpp>
 
 namespace mcu {
 namespace c28x {

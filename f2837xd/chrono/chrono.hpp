@@ -1,8 +1,8 @@
 #pragma once
 
 #include <mcudrv-c28x/f2837xd/system/system.hpp>
-#include <emblib/chrono.hpp>
-#include <emblib/static_vector.hpp>
+#include <emb/chrono.hpp>
+#include <emb/static_vector.hpp>
 
 namespace mcu {
 namespace c28x {

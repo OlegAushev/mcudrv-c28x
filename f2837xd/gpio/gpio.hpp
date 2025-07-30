@@ -2,11 +2,11 @@
 
 #include <mcudrv-c28x/f2837xd/system/system.hpp>
 
-#include <emblib/array.hpp>
-#include <emblib/chrono.hpp>
-#include <emblib/gpio.hpp>
-#include <emblib/optional.hpp>
-#include <emblib/scopedenum.hpp>
+#include <emb/array.hpp>
+#include <emb/chrono.hpp>
+#include <emb/gpio.hpp>
+#include <emb/optional.hpp>
+#include <emb/scopedenum.hpp>
 
 #include <assert.h>
 
